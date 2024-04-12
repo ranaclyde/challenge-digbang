@@ -10,6 +10,7 @@ import {
   SliderFilledTrack,
   SliderThumb,
   Text,
+  Tooltip,
 } from '@chakra-ui/react'
 
 const CurrencyText = ({ numberText, showCurrencySymbol = false }) => {
@@ -28,7 +29,10 @@ const InputSlider = ({
   inputName,
   handleChange,
   showCurrencySymbol,
+  decimalPoints = 2,
 }) => {
+  const [showTooltip, setShowTooltip] = React.useState(false)
+
   return (
     <>
       <Flex w="100%" justifyContent="space-between" alignItems="center" mb={3}>
@@ -52,6 +56,7 @@ const InputSlider = ({
             onChange={handleChange}
             min={minValue}
             max={maxValue}
+            precision={decimalPoints}
           >
             <NumberInputField
               fontWeight="bold"
@@ -71,11 +76,22 @@ const InputSlider = ({
           maxW="90%"
           min={minValue}
           max={maxValue}
+          onMouseEnter={() => setShowTooltip(true)}
+          onMouseLeave={() => setShowTooltip(false)}
         >
           <SliderTrack>
             <SliderFilledTrack />
           </SliderTrack>
-          <SliderThumb fontSize="sm" />
+          <Tooltip
+            hasArrow
+            bg="teal.500"
+            color="white"
+            placement="top"
+            isOpen={showTooltip}
+            label={value}
+          >
+            <SliderThumb fontSize="sm" />
+          </Tooltip>
         </Slider>
         <Flex w="100%" justifyContent="space-between">
           <CurrencyText
