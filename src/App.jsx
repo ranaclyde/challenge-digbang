@@ -8,6 +8,7 @@ import {
   QUOTA_MAX_VALUE,
   QUOTA_MIN_VALUE,
 } from './const/credit'
+import ActionButtons from './components/ActionButtons'
 
 function App() {
   const [totalAmount, setTotalAmount] = React.useState(5000)
@@ -46,6 +47,7 @@ function App() {
           />
         </Box>
         <FlatFee totalAmount={totalAmount} deadline={deadline} />
+        <ActionButtons />
       </Box>
     </Center>
   )
