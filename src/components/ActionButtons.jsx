@@ -12,7 +12,7 @@ import {
   ModalCloseButton,
 } from '@chakra-ui/react'
 
-const ActionButtons = () => {
+const ActionButtons = ({ isDisabled }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <>
@@ -23,6 +23,7 @@ const ActionButtons = () => {
           textTransform="uppercase"
           flexGrow={1}
           onClick={onOpen}
+          isDisabled={isDisabled}
         >
           Obtené crédito
         </Button>

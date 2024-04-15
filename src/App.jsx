@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Center, Text } from '@chakra-ui/react'
 import InputSlider from './components/InputSlider'
 import FlatFee from './components/FlatFee'
@@ -9,10 +9,27 @@ import {
   QUOTA_MIN_VALUE,
 } from './const/credit'
 import ActionButtons from './components/ActionButtons'
+import { formatPrice } from './utils/formatPrice'
 
 function App() {
-  const [totalAmount, setTotalAmount] = React.useState(5000)
-  const [deadline, setDeadline] = React.useState(3)
+  const [totalAmount, setTotalAmount] = useState(5000)
+  const [deadline, setDeadline] = useState(3)
+  const [price, setPrice] = useState(0)
+  const [isError, setIsError] = useState(false)
+
+  useEffect(() => {
+    if (
+      totalAmount > CREDIT_MAX_VALUE ||
+      totalAmount < CREDIT_MIN_VALUE ||
+      deadline > QUOTA_MAX_VALUE ||
+      deadline < QUOTA_MIN_VALUE
+    ) {
+      setIsError(true)
+    } else {
+      setIsError(false)
+      setPrice(formatPrice(totalAmount / deadline))
+    }
+  }, [totalAmount, deadline])
 
   return (
     <Center h="100vh" bgColor="#084F85">
@@ -46,8 +63,8 @@ function App() {
             decimalPoints={0}
           />
         </Box>
-        <FlatFee totalAmount={totalAmount} deadline={deadline} />
-        <ActionButtons />
+        <FlatFee isError={isError} price={price} />
+        <ActionButtons isDisabled={isError} />
       </Box>
     </Center>
   )
