@@ -39,7 +39,7 @@ const ActionButtons = ({ totalAmount, deadline, isDisabled }) => {
           rounded="none"
           width="120px"
           whiteSpace="normal"
-          fontSize="small"
+          fontSize="xs"
           textTransform="uppercase"
           onClick={onOpenInfo}
           isDisabled={isDisabled}
