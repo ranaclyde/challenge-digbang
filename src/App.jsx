@@ -2,6 +2,12 @@ import React from 'react'
 import { Box, Center, Text } from '@chakra-ui/react'
 import InputSlider from './components/InputSlider'
 import FlatFee from './components/FlatFee'
+import {
+  CREDIT_MAX_VALUE,
+  CREDIT_MIN_VALUE,
+  QUOTA_MAX_VALUE,
+  QUOTA_MIN_VALUE,
+} from './const/credit'
 
 function App() {
   const [totalAmount, setTotalAmount] = React.useState(5000)
@@ -24,8 +30,8 @@ function App() {
         <Box mt={5}>
           <InputSlider
             textLabel="Monto total"
-            minValue={5000}
-            maxValue={50000}
+            minValue={CREDIT_MIN_VALUE}
+            maxValue={CREDIT_MAX_VALUE}
             value={totalAmount}
             handleChange={(value) => setTotalAmount(value)}
             showCurrencySymbol
@@ -34,8 +40,8 @@ function App() {
         <Box mt={5}>
           <InputSlider
             textLabel="Plazo"
-            minValue={3}
-            maxValue={24}
+            minValue={QUOTA_MIN_VALUE}
+            maxValue={QUOTA_MAX_VALUE}
             value={deadline}
             handleChange={(value) => setDeadline(value)}
             decimalPoints={0}
