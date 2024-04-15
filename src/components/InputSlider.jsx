@@ -57,6 +57,7 @@ const InputSlider = ({
             min={minValue}
             max={maxValue}
             precision={decimalPoints}
+            clampValueOnBlur={false}
           >
             <NumberInputField
               fontWeight="bold"
