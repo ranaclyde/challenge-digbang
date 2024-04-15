@@ -28,6 +28,7 @@ const ActionButtons = ({ totalAmount, deadline, isDisabled }) => {
           colorScheme="teal"
           rounded="none"
           textTransform="uppercase"
+          fontSize="sm"
           flexGrow={1}
           onClick={onOpenSuccess}
           isDisabled={isDisabled}
