@@ -2,18 +2,25 @@ import React from 'react'
 import {
   Button,
   ButtonGroup,
+  Flex,
+  Image,
   useDisclosure,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
 } from '@chakra-ui/react'
+import ModalCustom from './ModalCustom'
+import { formatPrice } from '../utils/formatPrice'
 
-const ActionButtons = ({ isDisabled }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+const ActionButtons = ({ totalAmount, deadline, isDisabled }) => {
+  const {
+    isOpen: isOpenSuccess,
+    onOpen: onOpenSuccess,
+    onClose: onCloseSuccess,
+  } = useDisclosure()
+  const {
+    isOpen: isOpenInfo,
+    onOpen: onOpenInfo,
+    onClose: onCloseInfo,
+  } = useDisclosure()
+
   return (
     <>
       <ButtonGroup display="flex">
@@ -22,7 +29,7 @@ const ActionButtons = ({ isDisabled }) => {
           rounded="none"
           textTransform="uppercase"
           flexGrow={1}
-          onClick={onOpen}
+          onClick={onOpenSuccess}
           isDisabled={isDisabled}
         >
           Obtené crédito
@@ -34,30 +41,38 @@ const ActionButtons = ({ isDisabled }) => {
           whiteSpace="normal"
           fontSize="small"
           textTransform="uppercase"
+          onClick={onOpenInfo}
+          isDisabled={isDisabled}
         >
           Ver detalle de cuotas
         </Button>
       </ButtonGroup>
-      <Modal isOpen={isOpen} onClose={onClose} size="xs">
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Crédito exitoso</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>Ok</ModalBody>
-
-          <ModalFooter justifyContent="center">
-            <Button
-              size="sm"
-              colorScheme="teal"
-              rounded="none"
-              textTransform="uppercase"
-              onClick={onClose}
-            >
-              Listo
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+      <ModalCustom
+        isOpen={isOpenSuccess}
+        onClose={onCloseSuccess}
+        title="Crédito exitoso"
+        buttonLabel="Listo"
+      >
+        <Flex justifyContent="center">
+          <Image
+            boxSize="150px"
+            objectFit="cover"
+            src="ok.svg"
+            alt="Dan Abramov"
+          />
+        </Flex>
+      </ModalCustom>
+      <ModalCustom
+        isOpen={isOpenInfo}
+        onClose={onCloseInfo}
+        title="Detalle de cuotas"
+        buttonLabel="Cerrar"
+      >
+        {`Vas a sacar un crédito por el monto de ${formatPrice(
+          totalAmount
+        )} en ${deadline} cuotas sin interés de
+        ${formatPrice(totalAmount / deadline)} apróximadamente`}
+      </ModalCustom>
     </>
   )
 }

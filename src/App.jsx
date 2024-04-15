@@ -64,7 +64,11 @@ function App() {
           />
         </Box>
         <FlatFee isError={isError} price={price} />
-        <ActionButtons isDisabled={isError} />
+        <ActionButtons
+          isDisabled={isError}
+          totalAmount={totalAmount}
+          deadline={deadline}
+        />
       </Box>
     </Center>
   )
