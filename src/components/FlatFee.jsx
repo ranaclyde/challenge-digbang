@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Flex, Text } from '@chakra-ui/react'
 
 const FlatFee = ({ isError, price }) => {
@@ -24,6 +25,11 @@ const FlatFee = ({ isError, price }) => {
       </Text>
     </Flex>
   )
+}
+
+FlatFee.propTypes = {
+  price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  isError: PropTypes.bool.isRequired
 }
 
 export default FlatFee

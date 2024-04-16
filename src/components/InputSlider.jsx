@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
   Flex,
   InputGroup,
@@ -10,7 +11,7 @@ import {
   SliderFilledTrack,
   SliderThumb,
   Text,
-  Tooltip,
+  Tooltip
 } from '@chakra-ui/react'
 
 const CurrencyText = ({ numberText, showCurrencySymbol = false }) => {
@@ -21,15 +22,19 @@ const CurrencyText = ({ numberText, showCurrencySymbol = false }) => {
   )
 }
 
+CurrencyText.propTypes = {
+  numberText: PropTypes.number.isRequired,
+  showCurrencySymbol: PropTypes.bool
+}
+
 const InputSlider = ({
   textLabel,
   minValue,
   maxValue,
   value,
-  inputName,
   handleChange,
   showCurrencySymbol,
-  decimalPoints = 2,
+  decimalPoints = 2
 }) => {
   const [showTooltip, setShowTooltip] = React.useState(false)
 
@@ -51,7 +56,6 @@ const InputSlider = ({
             </InputLeftElement>
           )}
           <NumberInput
-            name={inputName}
             value={value}
             onChange={handleChange}
             min={minValue}
@@ -107,6 +111,17 @@ const InputSlider = ({
       </Flex>
     </>
   )
+}
+
+InputSlider.propTypes = {
+  numberText: PropTypes.number,
+  textLabel: PropTypes.string.isRequired,
+  minValue: PropTypes.number.isRequired,
+  maxValue: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  showCurrencySymbol: PropTypes.bool,
+  decimalPoints: PropTypes.number
 }
 
 export default InputSlider

@@ -6,5 +6,5 @@ export const formatPrice = (price) =>
     maximumFractionDigits: 2,
     minimumFractionDigits: 0,
     style: 'currency',
-    currency: 'ARS',
+    currency: 'ARS'
   }).format(price)

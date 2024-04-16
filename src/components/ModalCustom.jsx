@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
   Button,
   Modal,
@@ -7,7 +8,7 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
-  ModalCloseButton,
+  ModalCloseButton
 } from '@chakra-ui/react'
 
 const ModalCustom = ({
@@ -16,7 +17,7 @@ const ModalCustom = ({
   size = 'xs',
   title,
   children,
-  buttonLabel,
+  buttonLabel
 }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} size={size}>
@@ -42,6 +43,15 @@ const ModalCustom = ({
       </ModalContent>
     </Modal>
   )
+}
+
+ModalCustom.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  size: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  buttonLabel: PropTypes.string.isRequired,
+  children: PropTypes.node
 }
 
 export default ModalCustom

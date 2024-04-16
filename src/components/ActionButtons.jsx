@@ -1,11 +1,13 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
   Button,
   ButtonGroup,
   Flex,
   Image,
-  useDisclosure,
+  useDisclosure
 } from '@chakra-ui/react'
+
 import ModalCustom from './ModalCustom'
 import { formatPrice } from '../utils/formatPrice'
 
@@ -14,14 +16,14 @@ const ActionButtons = ({ totalAmount, deadline, isDisabled }) => {
   const {
     isOpen: isOpenSuccess,
     onOpen: onOpenSuccess,
-    onClose: onCloseSuccess,
+    onClose: onCloseSuccess
   } = useDisclosure()
 
-  // Métodos para el modal Detalle de cuotas
+  // Métodos para el modal Detalles de cuotas
   const {
     isOpen: isOpenInfo,
     onOpen: onOpenInfo,
-    onClose: onCloseInfo,
+    onClose: onCloseInfo
   } = useDisclosure()
 
   return (
@@ -79,6 +81,12 @@ const ActionButtons = ({ totalAmount, deadline, isDisabled }) => {
       </ModalCustom>
     </>
   )
+}
+
+ActionButtons.propTypes = {
+  totalAmount: PropTypes.number.isRequired,
+  deadline: PropTypes.number.isRequired,
+  isDisabled: PropTypes.bool.isRequired
 }
 
 export default ActionButtons

@@ -1,10 +1,10 @@
 import { extendTheme } from '@chakra-ui/react'
-import '@fontsource-variable/montserrat';
+import '@fontsource-variable/montserrat'
 
 const theme = extendTheme({
   fonts: {
-    body: `'Montserrat Variable', sans-serif`,
-  },
+    body: 'Montserrat Variable, sans-serif'
+  }
 })
 
 export default theme

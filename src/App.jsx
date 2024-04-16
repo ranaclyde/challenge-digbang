@@ -6,12 +6,12 @@ import {
   CREDIT_MAX_VALUE,
   CREDIT_MIN_VALUE,
   QUOTA_MAX_VALUE,
-  QUOTA_MIN_VALUE,
+  QUOTA_MIN_VALUE
 } from './const/credit'
 import ActionButtons from './components/ActionButtons'
 import { formatPrice } from './utils/formatPrice'
 
-function App() {
+const App = () => {
   const [totalAmount, setTotalAmount] = useState(5000)
   const [deadline, setDeadline] = useState(3)
   const [price, setPrice] = useState(0)
