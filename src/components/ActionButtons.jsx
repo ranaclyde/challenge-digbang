@@ -10,11 +10,14 @@ import ModalCustom from './ModalCustom'
 import { formatPrice } from '../utils/formatPrice'
 
 const ActionButtons = ({ totalAmount, deadline, isDisabled }) => {
+  // Métodos para el modal Crédito exitoso
   const {
     isOpen: isOpenSuccess,
     onOpen: onOpenSuccess,
     onClose: onCloseSuccess,
   } = useDisclosure()
+
+  // Métodos para el modal Detalle de cuotas
   const {
     isOpen: isOpenInfo,
     onOpen: onOpenInfo,
